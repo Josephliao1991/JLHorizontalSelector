@@ -68,6 +68,12 @@
     _itemColor  = [UIColor colorWithRed:0.1 green:0.2 blue:0.4 alpha:0.9];
     _titleColor = [UIColor whiteColor];
     
+    //set selector animation type
+    _animation = selectorDirectionAlpha;
+    
+    //set selector direction
+    _direction = selectorDirectionUp;
+    
     return self;
     
 }
@@ -271,7 +277,13 @@
         
     } completion:^(BOOL finished) {
         //
-        [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES
+        //set selector up to down or up to down
+        NSInteger row = 0;
+        if (_direction == selectorDirectionUp) {
+            row = [_data count]-1;
+        }
+        
+        [_tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:YES
                           scrollPosition:UITableViewScrollPositionTop];
         
     }];
@@ -290,54 +302,9 @@
     CGPoint point = [touches.anyObject locationInView:[(UIViewController*)_delegate view]];
     self.moveView.center = point;
     
+    //set animation
+    [self selectorAnimationWithTouches:touches];
     
-    CGPoint previousPoint = [touches.anyObject previousLocationInView:[(UIViewController*)_delegate view]];
-
-    float alphaRate_w = 1.25/[(UIViewController*)_delegate view].frame.size.width;
-    float alphaRate_h = 0.75/[(UIViewController*)_delegate view].frame.size.height;
-    
-    if (previousPoint.y > point.y) {
-        
-        if (self.controlView.alpha>0) {
-            self.controlView.alpha  -= alphaRate_h;
-        }
-        if (self.alpha>0) {
-            self.alpha              -= alphaRate_h;
-        }
-
-    }else if(previousPoint.y <= point.y){
-        
-        if (self.controlView.alpha<1) {
-            self.controlView.alpha  += alphaRate_h;
-        }
-        if (self.alpha<1) {
-            self.alpha              += alphaRate_h;
-            
-        }
-        
-    }
-    
-    if (previousPoint.x < point.x) {
-        
-        if (self.controlView.alpha>0) {
-            self.controlView.alpha  -= alphaRate_w;
-        }
-        if (self.alpha>0) {
-            self.alpha              -= alphaRate_w;
-        }
-
-    }else if(previousPoint.x >= point.x){
-        
-        if (self.controlView.alpha<1) {
-            self.controlView.alpha  += alphaRate_w;
-        }
-        if (self.alpha<1) {
-            self.alpha              += alphaRate_w;
-            
-        }
-
-        
-    }
     
 }
 
@@ -362,6 +329,7 @@
         
     } completion:^(BOOL finished) {
         //
+        self.moveView.center = self.controlView.center;
     }];
     
 }
@@ -370,20 +338,110 @@
     
     CGPoint point           = [touches.anyObject locationInView:[(UIViewController*)_delegate view]];
     
-    NSInteger index = (point.x - _controlView.frame.size.width)/(self.frame.size.width*2)*((int)[_data count]+1);
+//    NSInteger index = (point.x - _controlView.frame.size.width)/(self.frame.size.width*2)*((int)[_data count]+1);
+//      |           |
+//    /*|-----------|*\
+//      |          /|
+//      |        /  |
+//  (1)*|------/    | (2)
+//      |    / |    |
+//      |  /   |    |
+//    \*|/_____|____|*/
+//    (１／４斜邊長 比例 移動)
     
+    NSInteger indexR =
+    (hypot(point.x,([(UIViewController*)_delegate view].frame.size.height-point.y))//(1)
+     - _controlView.frame.size.width)/ // - controlView self with
+    (hypot([(UIViewController*)_delegate view].frame.size.width, [(UIViewController*)_delegate view].frame.size.height/2))*//(2)
+    ((int)[_data count]+1)*2;//(itme index X 2)--> 1/2 to 1/4;
     
-    if (index+1 > [_data count]) {
-        index = [_data count]-1;
-    }else if (index < 0){
-        index = 0;
+    if (indexR+1 > [_data count]) {
+        indexR = [_data count]-1;
+    }else if (indexR < 0){
+        indexR = 0;
     }
     
-    NSLog(@"Now Select Index %ld",(long)index);
+    //set selector up to down or down to up
+    if (_direction == selectorDirectionUp) {
+        
+        indexR = [_data count] - indexR -1;
+        
+    }
     
-    return index;
+    
+    NSLog(@"Now Select Index %ld",(long)indexR);
+    
+    return indexR;
 }
 
+#pragma  mark - Selector Animation 
+- (void)selectorAnimationWithTouches:(NSSet*)touches{
+    
+    if (_animation == selectorDirectionNone) {
+        return;
+    }
+    
+    if (_animation == selectorDirectionAlpha) {
+        
+        //Alpha animation
+        
+        CGPoint point = [touches.anyObject locationInView:[(UIViewController*)_delegate view]];
+        CGPoint previousPoint = [touches.anyObject previousLocationInView:[(UIViewController*)_delegate view]];
+        
+            float alphaRate_w = 1.25/[(UIViewController*)_delegate view].frame.size.width;
+            float alphaRate_h = 0.75/[(UIViewController*)_delegate view].frame.size.height;
+        
+//        float alphaRate = (hypot(point.x,(self.frame.size.height/2-point.y/2)) - _controlView.frame.size.width)/(hypot(self.frame.size.width, self.frame.size.height/2))/[(UIViewController*)_delegate view].frame.size.height;
+        
+        if (previousPoint.y > point.y) {
+            
+            if (self.controlView.alpha>0) {
+                self.controlView.alpha  -= alphaRate_h;
+            }
+            if (self.alpha>0) {
+                self.alpha              -= alphaRate_h;
+            }
+            
+        }else if(previousPoint.y <= point.y){
+            
+            if (self.controlView.alpha<1) {
+                self.controlView.alpha  += alphaRate_h;
+            }
+            if (self.alpha<1) {
+                self.alpha              += alphaRate_h;
+                
+            }
+            
+        }
+        
+        if (previousPoint.x < point.x) {
+            
+            if (self.controlView.alpha>0) {
+                self.controlView.alpha  -= alphaRate_w;
+            }
+            if (self.alpha>0) {
+                self.alpha              -= alphaRate_w;
+            }
+            
+        }else if(previousPoint.x >= point.x){
+            
+            if (self.controlView.alpha<1) {
+                self.controlView.alpha  += alphaRate_w;
+            }
+            if (self.alpha<1) {
+                self.alpha              += alphaRate_w;
+                
+            }
+            
+        }
+
+    }
+    
+//    if (_animation == ) {
+//        
+//    }
+    
+}
 
 
 @end

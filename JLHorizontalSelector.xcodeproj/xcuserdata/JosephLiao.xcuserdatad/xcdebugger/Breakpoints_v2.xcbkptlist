@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "-initWithWithObjects:withDelegate:"
+            landmarkName = "+creatSeletcorWithObjects:withStartImageName:withDelegate:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JLHorizontalSelector/JLHorizontalSelector.m"
-            timestampString = "455796686.2007"
+            timestampString = "456028660.258178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "-show"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JLHorizontalSelector/ViewController.m"
-            timestampString = "455795478.693972"
+            timestampString = "456029275.640522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JLHorizontalSelector/ViewController.m"
-            timestampString = "455795482.521651"
+            timestampString = "456029275.640522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,12 +74,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JLHorizontalSelector/JLHorizontalSelector.m"
-            timestampString = "455798893.706467"
+            timestampString = "456028660.258178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "-touchesMoved:withEvent:"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-addTableView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JLHorizontalSelector/JLHorizontalSelector.m"
-            timestampString = "455798893.706467"
+            timestampString = "456028660.258178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "-touchesMoved:withEvent:"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "-addControlView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "JLHorizontalSelector/JLHorizontalSelector.m"
-            timestampString = "455798893.706467"
+            timestampString = "456028660.258178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "-touchesMoved:withEvent:"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "-addControlView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
