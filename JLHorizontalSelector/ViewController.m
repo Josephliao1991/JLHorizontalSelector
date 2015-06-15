@@ -43,6 +43,28 @@
     
     NSLog(@"Select Item %ld",(long)index);
     
+    switch (index) {
+        case 0:
+            self.view.backgroundColor = [UIColor colorWithRed:0.4 green:0.2 blue:0.1 alpha:0.9];
+            break;
+            
+        case 1:
+            self.view.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.8 alpha:0.9];
+            break;
+            
+        case 2:
+            self.view.backgroundColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.5 alpha:0.9];
+            break;
+            
+        case 3:
+            self.view.backgroundColor = [UIColor colorWithRed:0.1 green:0.6 blue:0.3 alpha:0.9];
+            break;
+            
+        default:
+            break;
+    }
+    
+    
 }
 
 @end
