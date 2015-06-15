@@ -6,7 +6,23 @@
 //  Copyright (c) 2015年 TSUNG-LUN LIAO. All rights reserved.
 //
 
+
+
 #import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSInteger, selectorDirection){
+    
+    selectorDirectionUp,//default is Up
+    selectorDirectionDown
+    
+};
+
+typedef NS_ENUM(NSInteger, selectorAnimation){
+    
+    selectorDirectionAlpha,//default is Alpha
+    selectorDirectionNone
+    
+};
 
 @class JLHorizontalSelector;
 
@@ -19,6 +35,12 @@
 @end
 
 @interface JLHorizontalSelector : UIView
+
+//selector Direction
+@property (nonatomic) selectorDirection direction;
+
+//selector Animation
+@property (nonatomic) selectorAnimation animation;
 
 //item
 @property (nonatomic) UIColor   *titleColor;

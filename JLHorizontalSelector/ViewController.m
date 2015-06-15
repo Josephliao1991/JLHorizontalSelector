@@ -9,7 +9,10 @@
 #import "ViewController.h"
 #import "JLHorizontalSelector.h"
 
+
 @interface ViewController ()<JLHorizontalSelectorDelegate>
+
+@property (nonatomic,strong) UILabel *label;
 
 @end
 
@@ -30,7 +33,15 @@
     selector.moveViewColor = [UIColor colorWithRed:0.15 green:0.25 blue:0.45 alpha:0.6];
     selector.moveViewSize  = CGSizeMake(65, 65);
     
+    selector.animation = selectorDirectionAlpha;
+    selector.direction  = selectorDirectionUp;
+    
     [selector show];
+    
+    
+    _label = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.center.y, self.view.frame.size.width, 30)];
+    _label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:_label];
     
 }
 
@@ -42,6 +53,7 @@
 - (void)horizontalSelector:(JLHorizontalSelector *)horizontalSelector didSelectItemOfIndex:(NSInteger)index{
     
     NSLog(@"Select Item %ld",(long)index);
+    _label.text = [NSString stringWithFormat: @"Select iPhone %d",index+1];
     
 }
 
