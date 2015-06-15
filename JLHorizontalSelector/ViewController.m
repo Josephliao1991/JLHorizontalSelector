@@ -53,7 +53,7 @@
 - (void)horizontalSelector:(JLHorizontalSelector *)horizontalSelector didSelectItemOfIndex:(NSInteger)index{
     
     NSLog(@"Select Item %ld",(long)index);
-    _label.text = [NSString stringWithFormat: @"Select iPhone %d",index+1];
+    _label.text = [NSString stringWithFormat: @"Select iPhone %ld",index+1];
     
     switch (index) {
         case 0:
