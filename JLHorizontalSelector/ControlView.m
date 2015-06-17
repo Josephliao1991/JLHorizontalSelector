@@ -34,8 +34,6 @@
     
     [self addImageView];
    
-
-    
     
     
     self.delegate = delegate;
@@ -43,6 +41,8 @@
     
     return self;
 }
+
+
 
 - (void)addImageView{
     
@@ -111,6 +111,8 @@
     [self.delegate controlView:self didStopTouch:touches];
     
 }
+
+
 
 
 
