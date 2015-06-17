@@ -74,7 +74,19 @@
     //set selector direction
     _direction = selectorDirectionUp;
     
+    //Notification setting
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(resetView)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:[UIApplication sharedApplication]];
+    
     return self;
+    
+}
+
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
 
@@ -122,8 +134,9 @@
     
     
     [self addTableView];
-    [self addControlView];
     [self addMoveView];
+    [self addControlView];
+    
 }
 
 #pragma mark - Add SubView
@@ -333,6 +346,22 @@
     }];
     
 }
+#pragma mark - Clean View Method
+- (void)resetView{
+    
+    self.frame = CGRectMake(-self.frame.size.width, 0,
+                            self.frame.size.width,
+                            self.frame.size.height);
+    
+    self.moveView.alpha = 0;
+    self.controlView.alpha = 1;
+    self.alpha = 1;
+
+    self.moveView.center = self.controlView.center;
+    
+}
+
+#pragma  mark - Index Cacluate
 
 - (NSInteger)IndexOfItemWithTouches:(NSSet*)touches{
     
