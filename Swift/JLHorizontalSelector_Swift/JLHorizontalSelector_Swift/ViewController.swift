@@ -61,7 +61,7 @@ class ViewController: UIViewController,JLHorizontalSelectordelegate {
             
         case 3 :
             
-            self.view.backgroundColor = UIColor(red: 0.5, green: 0.4, blue: 0.3, alpha: 0.8)
+            self.view.backgroundColor = UIColor(red: 0.6, green: 0.4, blue: 0.3, alpha: 0.8)
             
             break;
             
